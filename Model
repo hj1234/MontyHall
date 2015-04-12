@@ -1,0 +1,114 @@
+mport math
+import random
+
+loop1count = 1
+
+while True:
+    if(loop1count == 1):
+        behav = input("Would you like to switch ('sw') or stick ('st') ?")
+    else:
+        behav = input("Incorrect input - 2ould you like to switch ('sw') or stick ('st') ?")
+    if behav.strip() == "sw" or behav.strip() == "st":
+        break
+    else:
+        loop1count += 1
+
+turns = int(input("How many turns would you like to play for?"))
+            
+goes = 1
+winCount = 0
+
+while((goes-1) < turns):
+    
+    rint = random.randint(1,3)
+    door1 = ""
+    door2 = ""
+    door3 = ""
+
+    if(rint == 1):
+        door1 = "car"
+        door2 = "donkey"
+        door3 = "donkey"
+    elif(rint == 2):
+        door1 = "donkey"
+        door2 = "car"
+        door3 = "donkey"
+    elif(rint == 3):
+        door1 = "donkey"
+        door2 = "donkey"
+        door3 = "car"
+    else:
+        print("Error")
+
+    print("\n")
+    print("""---""")
+    print("Turn number:",goes)
+    print("""
+
+  |---|   |---|   |---|  
+  |   |   |   |   |   |
+  | 1 |   | 2 |   | 3 |
+  |   |   |   |   |   |
+  |---|   |---|   |---|
+""",door1," ",door2," ",door3)
+
+
+    choice1 = random.randint(1,3)
+
+    print("\nChoice 1:", choice1)
+
+    if(behav == "st"):
+        if(choice1 == 1 and door1 == "car"):
+            print("You win")
+            winCount += 1
+        elif(choice1 == 2 and door2 == "car"):
+            print("You win")
+            winCount += 1
+        elif(choice1 == 3 and door3 == "car"):
+            print("You win")
+            winCount += 1
+        else:
+            print("You lose")
+
+    if(behav == "sw"):
+        if(choice1 == 1 and door2 == "donkey"):
+            print("Quiz show host reveals donkey behind door 2")
+            choice2 = 3
+        elif(choice1 == 1 and door3 == "donkey"):
+            print("Quiz show host reveals donkey behind door 3")
+            choice2 = 2
+        elif(choice1 == 2 and door1 == "donkey"):
+            print("Quiz show host reveals donkey behind door 1")
+            choice2 = 3
+        elif(choice1 == 2 and door3 == "donkey"):
+            print("Quiz show host reveals donkey behind door 3")
+            choice2 = 1
+        elif(choice1 == 3 and door1 == "donkey"):
+            print("Quiz show host reveals donkey behind door 1")
+            choice2 = 2
+        elif(choice1 == 3 and door2 == "donkey"):
+            print("Quiz show host reveals donkey behind door 2")
+            choice2 = 1
+        else:
+            print("Error")
+        print("Choice 2:", choice2)
+
+    if(behav == "sw"):
+        if(choice2 == 1 and door1 == "car"):
+            print("You win")
+            winCount += 1
+        elif(choice2 == 2 and door2 == "car"):
+            print("You win")
+            winCount += 1
+        elif(choice2 == 3 and door3 == "car"):
+            print("You win")
+            winCount += 1
+        else:
+            print("You lose")
+
+    goes = goes + 1
+
+
+print("\n")
+print("""---------------------------------""")
+print("\nWins:", winCount, "as percentage:",(round((winCount/turns)*100)),"%")
